@@ -30,23 +30,15 @@ def analyze_apps(path: str):
                 continue
 
             for subkey in key.subkeys():
-                # Extract details, falling back to key name or "N/A" if value is missing
-                
-                # Get DisplayName, falling back to key name (GUID) if missing
                 name = subkey.value("DisplayName").value() if "DisplayName" in subkey.values() and subkey.value("DisplayName").value() else subkey.name()
-                
-                # Get Version/Publisher, falling back to "N/A"
+
                 version = subkey.value("DisplayVersion").value() if "DisplayVersion" in subkey.values() else "N/A"
                 publisher = subkey.value("Publisher").value() if "Publisher" in subkey.values() else "N/A"
                 
-                # Only append if a name (either DisplayName or GUID) was found
+               
                 if name and name.strip():
                     apps.append(f"{name} (Version: {version}, Publisher: {publisher})")
 
-        if not apps:
-            print("No applications found.")
-        
-        # Use set to ensure unique entries, then sort and print
         for app in sorted(list(set(apps))):
             print(f"- {app}")
             

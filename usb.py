@@ -1,7 +1,7 @@
 import os
 from Registry import Registry
 
-# Hardcoded paths provided by the user
+
 NTUSER_ADMIN_PATH = "C:\\Users\\omara\\Downloads\\CW Disk Image\\NTUSERadmin.DAT"
 NTUSER_INFO_PATH = "C:\\Users\\omara\\Downloads\\CW Disk Image\\NTUSERinfo.DAT"
 
@@ -79,14 +79,10 @@ def analyze_command_history(ntuser_hive_path: str, username: str):
 
 def main():
     print("--- COMPREHENSIVE FORENSIC ACTIVITY ANALYZER ---")
-    
-    # 1. USB analysis requires SYSTEM hive path (still interactive)
     system_hive_path = get_system_path("SYSTEM")
     analyze_usb(system_hive_path)
     
     print("\n--- START NTUSER HIVE ANALYSIS ---")
-    
-    # 2. Command History analysis uses hardcoded NTUSER paths
     print(f"Analyzing admin user hive at: {NTUSER_ADMIN_PATH}")
     analyze_command_history(NTUSER_ADMIN_PATH, "admin") 
 
